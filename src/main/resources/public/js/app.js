@@ -51,6 +51,10 @@ function fire(){
    });
 
    request.done(function( currModel ) {
+    if(curModel.scanResult){
+   		alert("Scan found at least one Ship")}
+   	else{
+   		alert("Scan found no Ships")}
      displayGameState(currModel);
      gameModel = currModel;
 
