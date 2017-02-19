@@ -25,10 +25,9 @@ body {
 height:100px;*/
 	
 	background-color: light-gray;
-	margin: auto;
-    width: 100%;
+    width: 40%;
    
-    //padding: 5px;
+    /*padding: 5px;*/
 }
 
 .gameBoard td {
@@ -45,7 +44,7 @@ background-color:blue;
 }
 table{
 	margin-left:20%;
-	margin-right:20%;
+	/*margin-right:20%;*/
 }
 table, th, td {
    border: 1px solid black;
@@ -103,10 +102,9 @@ input[type="checkbox"] {
 #todoapp {
 	display: flex;
 	text-align:center;
-    //margin: auto;
-    width:70%;
+    width:100%;
     
-   // padding: 10px;
+
 }
 /*
 #todoapp input::-webkit-input-placeholder {
