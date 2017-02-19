@@ -1,21 +1,52 @@
 html,
 body {
+	
     margin: 0;
     padding: 0;
 }
-
+.container {
+	display: flex;
+	overflow:hidden;
+    width: 95%;
+   
+   
+    margin: auto;
+    padding: 10px;
+}
+#AircraftcarrierDiv{
+	
+	
+    height: 10%;
+    //padding-right:5%;
+   
+}
 .gameBoard{
 /*with:100px;
 height:100px;*/
-background-color: light-gray;
+	
+	background-color: light-gray;
+	margin: auto;
+    width: 100%;
+   
+    //padding: 5px;
 }
 
 .gameBoard td {
+
 width: 40px;
 height:40px;
 background-color:blue;
 }
 
+#FireScan{
+	
+	float:left;
+	
+}
+table{
+	margin-left:20%;
+	margin-right:20%;
+}
 table, th, td {
    border: 1px solid black;
 }
@@ -24,8 +55,11 @@ table, th, td {
 background-color: orange;
 }
 
-/*
+
 button {
+float:right;
+}
+	/*
     margin: 0;
     padding: 0;
     border: 0;
@@ -65,15 +99,16 @@ input[type="checkbox"] {
 .hidden {
     display: none;
 }
-
+*/
 #todoapp {
-    background: #fff;
-    margin: 130px 0 40px 0;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-    0 25px 50px 0 rgba(0, 0, 0, 0.1);
+	display: flex;
+	text-align:center;
+    //margin: auto;
+    width:70%;
+    
+   // padding: 10px;
 }
-
+/*
 #todoapp input::-webkit-input-placeholder {
     font-style: italic;
     font-weight: 300;
