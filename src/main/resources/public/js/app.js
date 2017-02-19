@@ -24,6 +24,7 @@ function placeShip() {
    });
 
    request.done(function( currModel ) {
+     toastr.success($("$shipSelec").val() + " placed!");
      displayGameState(currModel);
      gameModel = currModel;
 
