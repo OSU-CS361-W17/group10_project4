@@ -5,15 +5,21 @@ package edu.oregonstate.cs361.battleship;
  */
 public class Ship {
     protected String name;
-    protected private int length;
-    protected private Coordinate start;
-    protected private Coordinate end;
+    protected int length;
+    protected Coordinate start;
+    protected Coordinate end;
 
-    public Ship(String n, int l,Coordinate s, Coordinate e) {
-        name = n;
-        length = l;
-        start = s;
-        end = e;
+    public Ship(String name, int length,Coordinate start, Coordinate end) {
+        this.name = name;
+        this.length = length;
+        this.start = start;
+        this.end = end;
+    }
+    public Ship() { //Have to add in default constructor due to how subclasses work in Java
+        name = "Default";
+        length = 1;
+        start = new Coordinate(1,1);
+        end = new Coordinate(1,1);
     }
 
 
