@@ -11,38 +11,38 @@ class ShipTest {
 
     @Test
     public void testPlaceShip() {
-        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(5,7));
+        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(5,7),false,true);
         assertEquals(true,s.covers(new Coordinate(5,2)));
     }
 
     @Test
     public void testPlaceShipHorizontal() {
-        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(10,2));
+        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(10,2),false,true);
         assertEquals(true,s.covers(new Coordinate(6,2)));
     }
 
     @Test
     public void testPlaceShipHorizontalFalse() {
-        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(10,2));
+        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(10,2),false,true);
         assertEquals(false,s.covers(new Coordinate(1,1)));
     }
 
     @Test
     public void testPlaceShipVerticalFalse() {
-        Ship s = new Ship("AircraftCarrier",5,new Coordinate(5,2),new Coordinate(5,7));
+        Ship s = new Ship("AircraftCarrier",5,new Coordinate(5,2),new Coordinate(5,7),false,true);
         assertEquals(false,s.covers(new Coordinate(1,1)));
     }
 
     //BAD INPUT
     @Test
     public void testPlaceShipVerticalNoLocation() {
-        Ship s = new Ship("AircraftCarrier",5,new Coordinate(0,0),new Coordinate(9,9));
+        Ship s = new Ship("AircraftCarrier",5,new Coordinate(0,0),new Coordinate(9,9),false,true);
         assertEquals(false,s.covers(new Coordinate(1,1)));
     }
 
     @Test
     public void testScan() {
-        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(5,7));
+        Ship s = new Ship("AircraftCarrier",5, new Coordinate(5,2),new Coordinate(5,7),false,true);
         assertEquals(false,s.scan(new Coordinate(1,1)));
         assertEquals(true,s.scan(new Coordinate(4,2)));
         assertEquals(true,s.scan(new Coordinate(5,2)));
