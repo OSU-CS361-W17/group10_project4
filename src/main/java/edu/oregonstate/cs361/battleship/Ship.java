@@ -8,18 +8,24 @@ public class Ship {
     protected int length;
     protected Coordinate start;
     protected Coordinate end;
+    protected boolean hasStealth;
+    protected boolean hasArmor;
 
-    public Ship(String name, int length,Coordinate start, Coordinate end) {
+    public Ship(String name, int length,Coordinate start, Coordinate end, boolean stealth, boolean armor) {
         this.name = name;
         this.length = length;
         this.start = start;
         this.end = end;
+        this.hasArmor = armor;
+        this.hasStealth = stealth;
     }
     public Ship() { //Have to add in default constructor due to how subclasses work in Java
         name = "Default";
         length = 1;
         start = new Coordinate(1,1);
         end = new Coordinate(1,1);
+        hasStealth = false;
+        hasArmor = true;
     }
 
 
@@ -60,19 +66,19 @@ public class Ship {
 
 
     public boolean scan(Coordinate coor) {
-        if(covers(coor)){
+        if(covers(coor) && !(this.hasStealth)){
             return true;
         }
-        if(covers(new Coordinate(coor.getAcross()-1,coor.getDown()))){
+        if(covers(new Coordinate(coor.getAcross()-1,coor.getDown())) && !(this.hasStealth)){
             return true;
         }
-        if(covers(new Coordinate(coor.getAcross()+1,coor.getDown()))){
+        if(covers(new Coordinate(coor.getAcross()+1,coor.getDown())) && !(this.hasStealth)){
             return true;
         }
-        if(covers(new Coordinate(coor.getAcross(),coor.getDown()-1))){
+        if(covers(new Coordinate(coor.getAcross(),coor.getDown()-1)) && !(this.hasStealth)){
             return true;
         }
-        if(covers(new Coordinate(coor.getAcross(),coor.getDown()+1))){
+        if(covers(new Coordinate(coor.getAcross(),coor.getDown()+1)) && !(this.hasStealth)){
             return true;
         }
         return false;

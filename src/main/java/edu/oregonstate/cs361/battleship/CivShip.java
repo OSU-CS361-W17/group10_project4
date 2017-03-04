@@ -12,7 +12,8 @@ public class CivShip extends Ship{
         this.length = length;
         this.start = start;
         this.end = end;
-
+        this.hasStealth = false;
+        this.hasArmor = false;
     }
 
 }
