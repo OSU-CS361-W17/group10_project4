@@ -106,8 +106,8 @@ alert("Scan found no Ships")}
 
 displayShip(gameModel.aircraftCarrier);
 displayShip(gameModel.battleship);
-displayShip(gameModel.cruiser);
-displayShip(gameModel.destroyer);
+displayShip(gameModel.clipper);
+displayShip(gameModel.dinghy);
 displayShip(gameModel.submarine);
 
 for (var i = 0; i < gameModel.computerMisses.length; i++) {
