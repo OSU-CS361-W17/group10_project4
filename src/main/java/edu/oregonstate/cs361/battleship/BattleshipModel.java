@@ -21,6 +21,13 @@ public class BattleshipModel {
     private Ship computer_dinghy = new CivShip("Computer_Dinghy",1, new Coordinate(7,3),new Coordinate(7,3));
     private Ship computer_submarine = new Ship("Computer_Submarine",3, new Coordinate(9,6),new Coordinate(9,8), true, true);
 
+    private Ship computer_aircraftCarrier = new Ship("Computer_AircraftCarrier",5, new Coordinate(2,2),new Coordinate(2,7), false, true);
+    private Ship computer_battleship = new Ship("Computer_Battleship",4, new Coordinate(2,8),new Coordinate(6,8), true, true);
+    private CivShip computer_clipper = new CivShip("Computer_Clipper",3, new Coordinate(4,1),new Coordinate(4,4));
+    private CivShip computer_dinghy = new CivShip("Computer_Dinghy",1, new Coordinate(7,3),new Coordinate(7,5));
+    private Ship computer_submarine = new Ship("Computer_Submarine",2, new Coordinate(9,6),new Coordinate(9,8), true, true);
+  
+
     ArrayList<Coordinate> playerHits;
     private ArrayList<Coordinate> playerMisses;
     ArrayList<Coordinate> computerHits;
@@ -93,9 +100,11 @@ public class BattleshipModel {
         }else if (computer_battleship.covers(coor)){
             computerHits.add(coor);
         }else if (computer_dinghy.covers(coor)){
-            computerHits.add(coor);
+            // Civilian Ship - sink immediately
+            sinkShip(false, computer_dinghy.getSinkCoordinates());
         }else if (computer_clipper.covers(coor)){
-            computerHits.add(coor);
+            // Civilian Ship - sink immediately
+            sinkShip(false, computer_clipper.getSinkCoordinates());
         }else if (computer_submarine.covers(coor)){
             computerHits.add(coor);
         } else {
@@ -124,8 +133,11 @@ public class BattleshipModel {
         }else if (battleship.covers(coor)){
             playerHits.add(coor);
         }else if (dinghy.covers(coor)){
-            playerHits.add(coor);
+            // Civilian Ship - sink immediately
+            sinkShip(true, dinghy.getSinkCoordinates());
         }else if (clipper.covers(coor)){
+            // Civilian Ship - sink immediately
+            sinkShip(true, clipper.getSinkCoordinates());
             playerHits.add(coor);
         }else if (submarine.covers(coor)){
             playerHits.add(coor);
@@ -134,6 +146,18 @@ public class BattleshipModel {
         }
     }
 
+    private void sinkShip(boolean isPlayerShip, ArrayList<Coordinate> coords) {
+        coords.forEach(coord -> {
+            // Player ship sunk
+            if(isPlayerShip) {
+                playerHits.add(coord);
+
+                // Computer ship sunk
+            } else {
+                computerHits.add(coord);
+            }
+        });
+    }
 
     public void scan(int rowInt, int colInt) {
         Coordinate coor = new Coordinate(rowInt,colInt);

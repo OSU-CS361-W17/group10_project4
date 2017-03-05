@@ -53,6 +53,7 @@ function fire(){
    request.done(function( currModel ) {
      gameModel = currModel;
      displayGameState(currModel);
+     console.log(currModel);
    });
 
    request.fail(function( jqXHR, textStatus ) {
