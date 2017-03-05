@@ -11,6 +11,10 @@ public class Ship {
     protected boolean hasStealth;
     protected boolean hasArmor;
 
+    public Coordinate getStart() { return this.start; }
+    public Coordinate getEnd() { return this.end; }
+    public int getLength() { return this.length; }
+
     public Ship(String name, int length,Coordinate start, Coordinate end, boolean stealth, boolean armor) {
         this.name = name;
         this.length = length;
@@ -18,14 +22,6 @@ public class Ship {
         this.end = end;
         this.hasArmor = armor;
         this.hasStealth = stealth;
-    }
-    public Ship() { //Have to add in default constructor due to how subclasses work in Java
-        name = "Default";
-        length = 1;
-        start = new Coordinate(1,1);
-        end = new Coordinate(1,1);
-        hasStealth = false;
-        hasArmor = true;
     }
 
 
