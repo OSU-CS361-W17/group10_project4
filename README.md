@@ -3,7 +3,7 @@
 
 ### Grading:
 
-Group Items
+## Group Items
 
 UML Class Diagram detailing proposed solution	5%
 
@@ -20,7 +20,7 @@ Greater than 90% test coverage in Java code (line coverage)	10%
 Group Percentage:	60%
  
 
-Individual Items
+## Individual Items
 
 Assigned issue in GitHub Issue Tracker	5%
 
