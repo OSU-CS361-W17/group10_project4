@@ -36,6 +36,28 @@ function placeShip() {
 }
 
 
+function setDifficulty(difficulty) {
+
+   var request = $.ajax({
+     url: "/model/"+difficulty,
+     method: "post",
+     data: JSON.stringify(gameModel),
+     contentType: "application/json; charset=utf-8",
+     dataType: "json"
+   });
+
+   request.done(function( currModel ) {
+     toastr.success("Difficulty set!");
+     displayGameState(currModel);
+     gameModel = currModel;
+
+   });
+
+   request.fail(function( jqXHR, textStatus ) {
+     alert( "Request failed: " + textStatus );
+   });
+}
+
 
 
 function fire(){
