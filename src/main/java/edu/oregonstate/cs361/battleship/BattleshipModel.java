@@ -206,7 +206,7 @@ public class BattleshipModel {
     private void placeComputerShipsHard() {
         // hard mode: the computer places ships in random locations across the board; no overlapping allowed
         // first, place the computer ships in a 
-        // investigating hashsets...
+        // investigating hashsets....
     }
 
 
