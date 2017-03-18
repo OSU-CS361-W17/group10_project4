@@ -38,7 +38,6 @@ public class BattleshipModel {
     private boolean hardMode = false;
 
 
-
     public BattleshipModel() {
         playerHits = new ArrayList<>();
         playerMisses= new ArrayList<>();
