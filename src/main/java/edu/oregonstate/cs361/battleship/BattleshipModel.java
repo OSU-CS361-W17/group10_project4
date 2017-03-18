@@ -443,10 +443,10 @@ public class BattleshipModel {
             covered.add(point);
         }
         if (orientation == 0) {
-            computer_aircraftCarrier.setLocation(new Coordinate(baseY, baseX),
+            computer_submarine.setLocation(new Coordinate(baseY, baseX),
                 new Coordinate(baseY, baseX + 1));
         } else {
-            computer_aircraftCarrier.setLocation(new Coordinate(baseY, baseX),
+            computer_submarine.setLocation(new Coordinate(baseY, baseX),
                 new Coordinate(baseY + 1, baseX));
         }
     }
