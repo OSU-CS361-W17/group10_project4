@@ -2,6 +2,8 @@ package edu.oregonstate.cs361.battleship;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -33,5 +35,28 @@ class CoordinateTest {
         c.setAcross(9);
         assertEquals(9,c.getAcross());
     }
+    @Test
+   void isValid() {
+        Coordinate valid = new Coordinate(2, 2);
+        assertEquals(true,valid.isValid());
+    }
+    @Test
+    void print() {
+        Coordinate myCoord = new Coordinate(2, 2);
+         myCoord.print();
 
+    }
+    @Test
+    void getRandom(){
+        Random random = new Random();
+        Coordinate randomCoord = Coordinate.getRandom();
+        assert(randomCoord.isValid());
+    }
+    @Test
+    void getClose(){
+        Coordinate myCoord = new Coordinate(5,5);
+        Coordinate closeCoord = Coordinate.getClose(myCoord);
+        assert(closeCoord.isValid());
+    }
 }
+
