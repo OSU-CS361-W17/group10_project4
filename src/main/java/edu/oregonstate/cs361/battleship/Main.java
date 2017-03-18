@@ -22,6 +22,8 @@ public class Main {
         post("/scan/:row/:col", (req, res) -> scan(req));
         //This will listen to POST requests and expects to receive a game model, as well as location to place the ship
         post("/placeShip/:id/:row/:col/:orientation", (req, res) -> placeShip(req));
+        //This will listen to POST requests and expects to receive a game model, as well as game difficulty
+        post("/model/:difficulty", (req, res) -> newModel(req));
     }
 
     //This function returns a new model
@@ -83,7 +85,5 @@ public class Main {
         Gson gson = new Gson();
         return gson.toJson(currModel);
     }
-
-
 
 }
