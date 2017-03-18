@@ -34,6 +34,8 @@ public class BattleshipModel {
     private ArrayList<Coordinate> computerMisses;
 
     boolean scanResult = false;
+    
+    private boolean hardMode = false;
 
 
 
