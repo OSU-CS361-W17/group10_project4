@@ -2,7 +2,7 @@ var gameModel;
 
 $( document ).ready(function() {
   // Handler for .ready() called.
-  $.getJSON("model", function( json ) {
+  $.getJSON("model/hard", function( json ) {
   gameModel = json;
     console.log( "JSON Data: " + json );
    });
