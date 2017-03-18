@@ -28,15 +28,38 @@ public class BattleshipModel {
     ArrayList<Coordinate> computerHits;
     private ArrayList<Coordinate> computerMisses;
 
+    // Track ship hit by CPU in hard mode to determine when sunk (resume random firing)
+    private Ship targetShip;
+    private Coordinate previousHit;
+
     boolean scanResult = false;
+    private boolean hardMode;
 
-    
+    public BattleshipModel(String difficulty) {
+        // Set game mode
+        if(difficulty.equals("hard")) {
+            this.hardMode = true;
+        } else {
+            this.hardMode = false;
+        }
 
-    public BattleshipModel() {
+        // Initialize hits + misses
         playerHits = new ArrayList<>();
         playerMisses= new ArrayList<>();
         computerHits = new ArrayList<>();
         computerMisses= new ArrayList<>();
+        previousHit = new Coordinate(0, 0);
+
+        // Initialize CPU ship placements
+        initializeCpuShips();
+    }
+
+    private void initializeCpuShips() {
+        if(hardMode) {
+            // Randomly place ships
+        } else {
+            // Place ships in predefined locations (or do nothing, utilizing existing hardcoded placements)
+        }
     }
 
 
@@ -96,10 +119,10 @@ public class BattleshipModel {
             computerHits.add(coor);
         }else if (computer_dinghy.covers(coor)){
             // Civilian Ship - sink immediately
-            sinkShip(false, computer_dinghy.getSinkCoordinates());
+            sinkShip(false, computer_dinghy.getCoveredCoordinates());
         }else if (computer_clipper.covers(coor)){
             // Civilian Ship - sink immediately
-            sinkShip(false, computer_clipper.getSinkCoordinates());
+            sinkShip(false, computer_clipper.getCoveredCoordinates());
         }else if (computer_submarine.covers(coor)){
             computerHits.add(coor);
         } else {
@@ -108,34 +131,67 @@ public class BattleshipModel {
     }
 
     public void shootAtPlayer() {
-        int max = 10;
-        int min = 1;
-        Random random = new Random();
-        int randRow = random.nextInt(max - min + 1) + min;
-        int randCol = random.nextInt(max - min + 1) + min;
+        Coordinate coor;
 
-        Coordinate coor = new Coordinate(randRow,randCol);
+        if(hardMode) {
+            // "Smart" firing - Track previous hits and fire nearby
+
+            // Clear target if previously hit ship is sunk
+            if(targetShip != null && targetShip.isSunk(playerHits)) {
+                targetShip = null;
+                previousHit = new Coordinate(0, 0);
+            }
+
+            // Otherwise, fire away
+            if(targetShip != null && !targetShip.isSunk(playerHits) && previousHit.isValid()) {
+                System.out.println("Firing close");
+                coor = Coordinate.getClose(previousHit);
+                System.out.println(coor.getAcross() + ", " + coor.getDown());
+            } else {
+                System.out.println("Firing randomly");
+                // Fire randomly, no previous hit to track
+                coor = Coordinate.getRandom();
+            }
+        } else {
+            // "Dumb" firing - Fire in pattern
+            coor = Coordinate.getRandom();
+        }
+
         playerShot(coor);
     }
+
 
     void playerShot(Coordinate coor) {
         if(playerMisses.contains(coor)){
             System.out.println("Dupe");
+            return;
         }
 
         if(aircraftCarrier.covers(coor)){
             playerHits.add(coor);
+            previousHit = coor;
+            targetShip = aircraftCarrier;
         }else if (battleship.covers(coor)){
             playerHits.add(coor);
+            previousHit = coor;
+            targetShip = battleship;
         }else if (dinghy.covers(coor)){
             // Civilian Ship - sink immediately
-            sinkShip(true, dinghy.getSinkCoordinates());
+            sinkShip(true, dinghy.getCoveredCoordinates());
+            targetShip = null;
+            playerHits.add(coor);
+            previousHit = new Coordinate(0, 0);
         }else if (clipper.covers(coor)){
             // Civilian Ship - sink immediately
-            sinkShip(true, clipper.getSinkCoordinates());
+            sinkShip(true, clipper.getCoveredCoordinates());
             playerHits.add(coor);
+            targetShip = null;
+            playerHits.add(coor);
+            previousHit = new Coordinate(0, 0);
         }else if (submarine.covers(coor)){
             playerHits.add(coor);
+            previousHit = coor;
+            targetShip = submarine;
         } else {
             playerMisses.add(coor);
         }
