@@ -51,17 +51,10 @@ public class BattleshipModel {
         previousHit = new Coordinate(0, 0);
 
         // Initialize CPU ship placements
-        initializeCpuShips();
-    }
-
-    private void initializeCpuShips() {
         if(hardMode) {
-            // Randomly place ships
-        } else {
-            // Place ships in predefined locations (or do nothing, utilizing existing hardcoded placements)
+            placeComputerShipsHard();
         }
     }
-
 
     public Ship getShip(String shipName) {
         if (shipName.equalsIgnoreCase("aircraftcarrier")) {
@@ -232,23 +225,6 @@ public class BattleshipModel {
     public boolean getScanResult() {
         return scanResult;
     }
-
-
-    
-    // hardMode: boolean difficulty state variable, true if the game is played in hard mode
-    private boolean hardMode = false;
-
-    
-    // setDifficulty: if user pressed the 'hard' button, then set state variable hardMode to true and call
-    // placeComputerShipsHard to place the computer's ships randomly
-    public void setDifficulty(String difficulty) {
-        if (difficulty.equals("hard")) {
-            hardMode = true;
-            placeComputerShipsHard();
-        }
-    }
-
-    
     
     // placeComputerShipsHard: if hard mode is selected, then the computer places ships in random locations across
     // the board (with no overlapping)
