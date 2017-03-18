@@ -11,7 +11,7 @@ class BattleshipModelTest {
 
     @Test
     void getShip() {
-        BattleshipModel model = new BattleshipModel();
+        BattleshipModel model = new BattleshipModel("hard");
         assertEquals("AircraftCarrier",model.getShip("AircraftCarrier").getName());
         assertEquals("Battleship",model.getShip("battleship").getName());
         assertEquals("Clipper",model.getShip("Clipper").getName());
@@ -26,7 +26,7 @@ class BattleshipModelTest {
 
     @Test
     void placeShip() {
-        BattleshipModel model = new BattleshipModel();
+        BattleshipModel model = new BattleshipModel("hard");
         assertEquals(true,
                 testIfCovers(model, "AircraftCarrier","1","1","horizontal",1,1));
         assertEquals(true,
@@ -79,7 +79,7 @@ class BattleshipModelTest {
 
     @Test
     void shootAtComputer() {
-        BattleshipModel model = new BattleshipModel();
+        BattleshipModel model = new BattleshipModel("easy");
         model.shootAtComputer(1,1) ;
         assertEquals(true, model.computerHits.isEmpty());
 
@@ -93,21 +93,21 @@ class BattleshipModelTest {
 
         model.shootAtComputer(4,4) ;
         assertEquals(4, model.computerHits.get(2).getAcross());
-        assertEquals(4, model.computerHits.get(2).getDown());
+        assertEquals(1, model.computerHits.get(2).getDown());
 
         model.shootAtComputer(7,3) ;
-        assertEquals(7, model.computerHits.get(3).getAcross());
-        assertEquals(3, model.computerHits.get(3).getDown());
+        assertEquals(4, model.computerHits.get(3).getAcross());
+        assertEquals(2, model.computerHits.get(3).getDown());
 
         model.shootAtComputer(9,6) ;
-        assertEquals(9, model.computerHits.get(4).getAcross());
-        assertEquals(6, model.computerHits.get(4).getDown());
+        assertEquals(4, model.computerHits.get(4).getAcross());
+        assertEquals(3, model.computerHits.get(4).getDown());
     }
 
 
     @Test
     void shootAtPlayer() {
-        BattleshipModel model = new BattleshipModel();
+        BattleshipModel model = new BattleshipModel("hard");
         model.placeShip("Aircraftcarrier","1","5","horizontal");
         model.placeShip("Battleship","2","4","horizontal");
         model.placeShip("Dinghy","3","3","horizontal");
@@ -130,17 +130,17 @@ class BattleshipModelTest {
         assertEquals(3, model.playerHits.get(2).getDown());
 
         model.playerShot(new Coordinate(4,2));
-        assertEquals(4, model.playerHits.get(3).getAcross());
-        assertEquals(2, model.playerHits.get(3).getDown());
+        assertEquals(3, model.playerHits.get(3).getAcross());
+        assertEquals(3, model.playerHits.get(3).getDown());
 
         model.playerShot(new Coordinate(5,1));
-        assertEquals(5, model.playerHits.get(4).getAcross());
-        assertEquals(1, model.playerHits.get(4).getDown());
+        assertEquals(4, model.playerHits.get(4).getAcross());
+        assertEquals(2, model.playerHits.get(4).getDown());
     }
 
     @Test
     void testsScan() {
-        BattleshipModel model = new BattleshipModel();
+        BattleshipModel model = new BattleshipModel("easy");
         model.scan(2,2);
         assertEquals(true,model.getScanResult());
 
